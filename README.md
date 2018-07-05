@@ -1,4 +1,4 @@
-# programming_c
+﻿# programming_c
 
 Cプログラミング資料、主にvisual studio ベースで
 
