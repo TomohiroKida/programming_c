@@ -8,6 +8,9 @@ int oeprate_words()
 	char s1[N] = "abcdefghi";
 	char s2[N] = "jklmnopqr";
 	char s3[N * 2] = "stuvw?";
+	char s4[N] = "ab?cd?ef?";
+	char *s5;
+	int  ret;
 
 	for (int i = 0; i < N; i++)
 		printf("%d %c\n", i, s1[i]);
@@ -34,6 +37,42 @@ int oeprate_words()
 		strcat(s3, s1);
 	}
 
+	/* COMPARE FUNCTIONS */
+	{
+		// compare s2 to s1
+		// no follow by locale
+		// return lager than   0 if s2 >  s1
+		// return              0 if s2 == s1
+		// return smaller than 0 if s2 <  s1
+		ret = strcmp(s2, s1);
+
+		// compare s2 to s1 specified num of word
+		// no follow by locale
+		// return lager than   0 if s2 >  s1
+		// return              0 if s2 == s1
+		// return smaller than 0 if s2 <  s1
+		ret = strncmp(s2, s1, 3);
+
+		// compare s2 to s1
+		// follow by locale
+		// return lager than   0 if s2 >  s1
+		// return              0 if s2 == s1
+		// return smaller than 0 if s2 <  s1
+		ret = strcoll(s2, s1);
+
+		// change locale s1 to s2
+		strxfrm(s2, s1, N);
+	}
+
+	// separate s4 by specified word
+	// when next stage, specified NULL 
+	s5 = strtok(s4, "?");
+	s5 = strtok(NULL, "?");
+
+	// length of string 
+	// count from head to \0
+	ret = strlen(s3);
+
 	return 0;
 }
 
@@ -58,15 +97,34 @@ int operate_array()
 
 	/* COMPARE FUNCTIONS */
 	{
-		ret = memcmp(i1, i2, 1);
+		// compare i2 to i1
+		// return lager than   0 if i2 >  i1
+		// return              0 if i2 == i1
+		// return smaller than 0 if i2 <  i1
+		ret = memcmp(i2, i1, 1);
 	}
+
+	// set data to array specified num from to
+	memset(i1, 0, sizeof(int)*N);
 
 	return 0;
 }
 
 int main()
 {
-	operate_array();
-	oeprate_words();
+	char *a = "bob 4 men";
+	char b[N*3] = "1,2,3,4,5,6,7,8,9,\n1,";
+	char name[N];
+	int  age;
+	char sex[N];
+	//operate_array();
+	//oeprate_words();
+	//sscanf(a, "%s %d %s", name, &age, sex);
+	a = strtok(b, ",");
+	for (int i = 0; i < 10; i++)
+	{
+		a = strtok(NULL, ",");
+	}
+
 	return 0;
 }
