@@ -87,12 +87,12 @@ int operate_array()
 		// operate array
 		// copy i2 to i1 specified num of word
 		// disable to overlap between words
-		memcpy(i1, i2, sizeof(int) * 2);
+		//memcpy(i1, i2, sizeof(int) * 2);
 
 		// operate array
 		// copy i2 to i2 specified num of word
 		// enable to overlap between words
-		memmove(&i2[0], &i2[1], sizeof(int) * 5);
+		//memmove(&i2[0], &i2[1], sizeof(int) * 5);
 	}
 
 	/* COMPARE FUNCTIONS */
@@ -101,7 +101,7 @@ int operate_array()
 		// return lager than   0 if i2 >  i1
 		// return              0 if i2 == i1
 		// return smaller than 0 if i2 <  i1
-		ret = memcmp(i2, i1, 1);
+		ret = memcmp(i2, i1, sizeof(int) * 4);
 	}
 
 	// set data to array specified num from to
@@ -113,18 +113,18 @@ int operate_array()
 int main()
 {
 	char *a = "bob 4 men";
-	char b[N*3] = "1,2,3,4,5,6,7,8,9,\n1,";
+	char b[N * 3] = "1,2,3,4,5,6,7,8,9,\n1,";
 	char name[N];
 	int  age;
 	char sex[N];
 	//operate_array();
-	//oeprate_words();
+	oeprate_words();
 	//sscanf(a, "%s %d %s", name, &age, sex);
-	a = strtok(b, ",");
-	for (int i = 0; i < 10; i++)
-	{
-		a = strtok(NULL, ",");
-	}
+	//a = strtok(b, ",");
+	//for (int i = 0; i < 10; i++)
+	//{
+	//	a = strtok(NULL, ",");
+	//}
 
 	return 0;
 }
